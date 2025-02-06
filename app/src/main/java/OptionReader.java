@@ -5,11 +5,10 @@ public class OptionReader {
 	private static KWICObjectLoader kwicObjLoader = new KWICObjectLoader();
 	
 	private OptionReader() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public static void readOptions() {
-		ResourceBundle rb = ResourceBundle.getBundle("config");
+		ResourceBundle rb = ResourceBundle.getBundle("./src/main/resources/config");
 		Enumeration<String> keys = rb.getKeys();
 		userOptions = new HashMap<String, String>();
 		while (keys.hasMoreElements()) {
