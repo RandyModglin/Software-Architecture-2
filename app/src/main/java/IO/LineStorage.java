@@ -1,4 +1,4 @@
-package Input;
+package IO;
 
 public class LineStorage {
 
