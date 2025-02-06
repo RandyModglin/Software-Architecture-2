@@ -19,10 +19,13 @@ public class KWICObjectLoader extends ClassLoader {
             return obj;
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NoSuchMethodException | SecurityException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
