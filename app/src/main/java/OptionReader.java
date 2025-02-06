@@ -40,8 +40,5 @@ public class OptionReader {
 		}
 		return valueStr;
 	}
-	
-	
-	
 
 }

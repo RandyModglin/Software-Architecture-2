@@ -10,8 +10,7 @@ public class Controller {
 		String inputObjStr = OptionReader.getString("Input"); 
 		
 		Input inputObj = (Input) OptionReader.getObjectFromKey(inputObjStr); 	
-		
 
-	
+        System.out.println("Successful Run");
 	}
 }
