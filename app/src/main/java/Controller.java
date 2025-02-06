@@ -1,5 +1,8 @@
 import java.util.*;
 
+import IO.Input;
+import IO.LineStorage;
+
 public class Controller {	
 	
 	//3rd Arg is the function
@@ -7,12 +10,18 @@ public class Controller {
 	public static void main(String[] args) {
 		
 		//Get input object
-		
 		OptionReader.readOptions();
 		String inputObjStr = OptionReader.getString("Input"); 
 		
-		Input inputObj = (Input) OptionReader.getObjectFromKey(inputObjStr); 	
+		Input inputObj = (Input) OptionReader.getObjectFromKey(inputObjStr);
+		
+		//Populate Line Storage
+		LineStorage lineStorage = new LineStorage();
+		lineStorage.storeLines(inputObj);
 
-        System.out.println("Successful Run");
+		String processName = args[3];
+		switch(processName){
+
+		}
 	}
 }
