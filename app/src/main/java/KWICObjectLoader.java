@@ -9,10 +9,12 @@ public class KWICObjectLoader extends ClassLoader {
             ClassLoader loader = this.getClass().getClassLoader();
 		
             // Load the target class using its name
-            Class aClass = loader.loadClass(className);
+            @SuppressWarnings("rawtypes")
+			Class aClass = loader.loadClass(className);
 
             // Create a new instance from the loaded class
-            Constructor constructor = aClass.getConstructor();
+            @SuppressWarnings({ "rawtypes", "unchecked" })
+			Constructor constructor = aClass.getConstructor();
             Object obj = constructor.newInstance();
 
             //return the instance

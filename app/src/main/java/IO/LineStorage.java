@@ -14,9 +14,7 @@ public class LineStorage {
         storedLines = inputObj.readInput();
     }
 
-    public ArrayList<String[]> getLines(){
-        System.out.println(storedLines);
-        
+    public ArrayList<String[]> getLines(){   
         return storedLines;
     }
     
