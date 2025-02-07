@@ -1,5 +1,8 @@
+import java.util.HashMap;
+
 import IO.Input;
 import IO.LineStorage;
+import IO.Output;
 
 public class Controller {	
 	
@@ -19,11 +22,16 @@ public class Controller {
 		
 		Input inputObj = (Input) OptionReader.getObjectFromKey(inputObjStr);
 
+
 		//Get output object
 		OptionReader.readOptions();
 		String outputObjStr = OptionReader.getString("Output"); 
 		
 		Output outputObj = (Output) OptionReader.getObjectFromKey(outputObjStr);
+		String order = OptionReader.getString("Order");
+		String filter = OptionReader.getString("WordFiltering");
+		String filteredWords = OptionReader.getString("TrivialWords");
+		outputObj.Configure(order, filter, filteredWords);
 		
 
 		//Get input file
@@ -42,9 +50,8 @@ public class Controller {
 			switch (processName) {
 				case "kwic-processing":
 				KWICProcessor processor = (KWICProcessor) OptionReader.getObjectFromStr("KWICProcessor");
-				processor.ProcessFile(lineStorage);
-
-
+				HashMap<String, Integer> processedLines = processor.ProcessFile(lineStorage);
+				outputObj.PrintProcess(processedLines);
 					break;
 				case "keyword-search":
 					break;
