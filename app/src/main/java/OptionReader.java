@@ -8,7 +8,7 @@ public class OptionReader {
 	}
 	
 	public static void readOptions() {
-		ResourceBundle rb = ResourceBundle.getBundle("./src/main/resources/config");
+		ResourceBundle rb = ResourceBundle.getBundle("config");
 		Enumeration<String> keys = rb.getKeys();
 		userOptions = new HashMap<String, String>();
 		while (keys.hasMoreElements()) {
