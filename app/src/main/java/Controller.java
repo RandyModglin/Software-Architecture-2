@@ -18,6 +18,12 @@ public class Controller {
 		String inputObjStr = OptionReader.getString("Input"); 
 		
 		Input inputObj = (Input) OptionReader.getObjectFromKey(inputObjStr);
+
+		//Get output object
+		OptionReader.readOptions();
+		String outputObjStr = OptionReader.getString("Output"); 
+		
+		Output outputObj = (Output) OptionReader.getObjectFromKey(outputObjStr);
 		
 
 		//Get input file
@@ -35,6 +41,10 @@ public class Controller {
 
 			switch (processName) {
 				case "kwic-processing":
+				KWICProcessor processor = (KWICProcessor) OptionReader.getObjectFromStr("KWICProcessor");
+				processor.ProcessFile(lineStorage);
+
+
 					break;
 				case "keyword-search":
 					break;
