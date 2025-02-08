@@ -3,15 +3,12 @@ package IO;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-import java.util.HashMap;
 import java.util.TreeMap;
 
 public class TxtOutput extends Output{
 
      @Override
-    public void PrintProcess(HashMap<String, Integer> processedLines) {
-        TreeMap<String, Integer> sortedMap = new TreeMap<>(sortingMethod);
-        sortedMap.putAll(processedLines);
+    public void PrintProcess(TreeMap<String, Integer> sortedProcess) {
 
         PrintStream out;
         try {
@@ -26,7 +23,7 @@ public class TxtOutput extends Output{
         System.out.println(" Original Line Index");
 
         int index = 1;
-        for(java.util.Map.Entry<String, Integer> entry : sortedMap.entrySet()) {
+        for(java.util.Map.Entry<String, Integer> entry : sortedProcess.entrySet()) {
             String line = entry.getKey();
             Integer originIndex = entry.getValue();
 
