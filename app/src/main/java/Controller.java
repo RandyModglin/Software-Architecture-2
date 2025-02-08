@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
 
@@ -47,14 +48,18 @@ public class Controller {
 
 			switch (processName) {
 				case "kwic-processing":
-				KWICProcessor processor = (KWICProcessor) OptionReader.getObjectFromStr("KWICProcessor");
-				HashMap<String, Integer> processedLines = processor.ProcessFile(lineStorage);
-				TreeMap<String, Integer> sortedProcess = Sorter.sortProcess(processedLines);
-				outputObj.PrintProcess(sortedProcess);
+					KWICProcessor processor = (KWICProcessor) OptionReader.getObjectFromStr("KWICProcessor");
+					HashMap<String, Integer> processedLines = processor.ProcessFile(lineStorage);
+					TreeMap<String, Integer> sortedProcess = Sorter.sortProcess(processedLines);
+					outputObj.PrintProcess(sortedProcess);
 					break;
 				case "keyword-search":
 					break;
 				case "index-generation":
+					KWICIndexer indexer = (KWICIndexer) OptionReader.getObjectFromStr("KWICIndexer");
+					HashMap<String, ArrayList<Integer>> indexedLines = indexer.IndexFile(lineStorage);
+					TreeMap<String, ArrayList<Integer>> sortedIndexes = Sorter.sortIndex(indexedLines);
+					outputObj.PrintIndex(sortedIndexes);
 					break;
 				default:
 					System.out.println("Unsupported Process");

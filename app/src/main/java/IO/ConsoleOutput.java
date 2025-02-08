@@ -1,8 +1,10 @@
 package IO;
 
+import java.util.ArrayList;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
-public class ConsoleOutput extends Output {
+public class ConsoleOutput implements Output {
 
     @Override
     public void PrintProcess(TreeMap<String, Integer> sortedProcess) {
@@ -11,7 +13,7 @@ public class ConsoleOutput extends Output {
         System.out.println(" Original Line Index");
 
         int index = 1;
-        for(java.util.Map.Entry<String, Integer> entry : sortedProcess.entrySet()) {
+        for(Entry<String, Integer> entry : sortedProcess.entrySet()) {
             String line = entry.getKey();
             Integer originIndex = entry.getValue();
 
@@ -21,8 +23,19 @@ public class ConsoleOutput extends Output {
 
             index++;
         }
+    }
 
-        System.out.println();
+    @Override
+    public void PrintIndex(TreeMap<String, ArrayList<Integer>> sortedIndex) {
+        for(Entry<String, ArrayList<Integer>> entry : sortedIndex.entrySet()) {
+            String key = entry.getKey();
+            ArrayList<Integer> indexes = entry.getValue();
+
+            System.out.print(key);
+            for(int index: indexes){
+                System.out.print(", " + index);
+            }
+        }
     }
     
 }

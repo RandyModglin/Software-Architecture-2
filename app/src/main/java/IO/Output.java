@@ -1,12 +1,11 @@
 package IO;
 
-import java.util.Comparator;
+import java.util.ArrayList;
 import java.util.TreeMap;
 
-abstract public class Output {
-    
-    Comparator<String> sortingMethod;
-    public String[] filteredWords;
+public interface Output {
 
     public abstract void PrintProcess(TreeMap<String, Integer> sortedProcess);
+
+    public abstract void PrintIndex(TreeMap<String, ArrayList<Integer>> sortedIndex);
 }

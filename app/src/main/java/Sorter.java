@@ -1,12 +1,16 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
 public class Sorter {
 
     public static Comparator<String> sortingMethod;
     public static Boolean isFiltering;
-    public static String[] filteredWords;
+    public static List<String> filteredWords;
 
     public static void Configure(){        
         if(OptionReader.getString("Order").equals("Ascending")){
@@ -18,7 +22,7 @@ public class Sorter {
 
         if(OptionReader.getString("WordFiltering").equals("Yes")){
             isFiltering = true;
-            filteredWords = OptionReader.getString("TrivialWords").split("\\,");
+            filteredWords = Arrays.asList(OptionReader.getString("TrivialWords").split("\\,"));
         }
     }
 
@@ -29,5 +33,22 @@ public class Sorter {
         return sortedMap;
     }
 
-    
+    public static TreeMap<String, ArrayList<Integer>> sortIndex(HashMap<String, ArrayList<Integer>> keyWordMap) {
+        TreeMap<String, ArrayList<Integer>> sortedMap = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+
+        if(isFiltering == true){
+            for(Entry<String, ArrayList<Integer>> entry : keyWordMap.entrySet()) {
+            String key = entry.getKey();
+
+            if(filteredWords.contains(key) == false){
+                sortedMap.put(key, keyWordMap.get(key));
+            }
+        }
+        }
+        else{
+            sortedMap.putAll(keyWordMap);
+        }
+
+        return sortedMap;
+    }
 }

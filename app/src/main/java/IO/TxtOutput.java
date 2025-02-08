@@ -3,9 +3,11 @@ package IO;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
-public class TxtOutput extends Output{
+public class TxtOutput implements Output{
 
      @Override
     public void PrintProcess(TreeMap<String, Integer> sortedProcess) {
@@ -33,8 +35,29 @@ public class TxtOutput extends Output{
 
             index++;
         }
+    }
 
-        System.out.println();
+    @Override
+    public void PrintIndex(TreeMap<String, ArrayList<Integer>> sortedIndex) {
+        PrintStream out;
+        try {
+            out = new PrintStream(new FileOutputStream("output.txt"));
+            System.setOut(out);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        for(Entry<String, ArrayList<Integer>> entry : sortedIndex.entrySet()) {
+            String key = entry.getKey();
+            ArrayList<Integer> indexes = entry.getValue();
+
+            System.out.print(key);
+            for(int index: indexes){
+                System.out.print(", " + index);
+            }
+
+            System.out.println();
+        }
     }
     
 }
