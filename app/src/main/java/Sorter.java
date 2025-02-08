@@ -24,10 +24,13 @@ public class Sorter {
             isFiltering = true;
             filteredWords = Arrays.asList(OptionReader.getString("TrivialWords").split("\\,"));
         }
+        else{
+            isFiltering = false;
+        }
     }
 
     public static TreeMap<String, Integer> sortProcess(HashMap<String, Integer> processedLines) {
-        TreeMap<String, Integer> sortedMap = new TreeMap<String, Integer>(sortingMethod);
+        TreeMap<String, Integer> sortedMap = new TreeMap<>(sortingMethod);
         sortedMap.putAll(processedLines);
 
         return sortedMap;
@@ -40,10 +43,10 @@ public class Sorter {
             for(Entry<String, ArrayList<Integer>> entry : keyWordMap.entrySet()) {
             String key = entry.getKey();
 
-            if(filteredWords.contains(key) == false){
-                sortedMap.put(key, keyWordMap.get(key));
+                if(filteredWords.contains(key) == false){
+                    sortedMap.put(key, keyWordMap.get(key));
+                }
             }
-        }
         }
         else{
             sortedMap.putAll(keyWordMap);

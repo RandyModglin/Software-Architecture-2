@@ -21,6 +21,8 @@ public class KWICProcessor {
                 String joinLine = String.join(" ", line);
                 processedLines.put(joinLine, currIndex);
             }
+
+            currIndex++;
         }
 
         return processedLines;
