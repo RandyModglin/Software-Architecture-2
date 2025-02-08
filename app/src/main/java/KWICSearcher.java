@@ -7,7 +7,7 @@ public class KWICSearcher {
         ArrayList<String> matchingLines = new ArrayList<>();
 
         for(String[] line : lineStorage.getLines()){
-            String currLine = null;
+            String currLine = "";
             boolean matching = false;
 
             for(String word: line){
