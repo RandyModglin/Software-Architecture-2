@@ -14,7 +14,7 @@ public class TxtInput extends Input {
 
     @Override
     public ArrayList<String[]> readInput(){
-        ArrayList<String[]> readLines = new ArrayList<String[]>();
+        ArrayList<String[]> readLines = new ArrayList<>();
         
         try (BufferedReader br = new BufferedReader(new FileReader(currFile))){
             String line;
@@ -25,10 +25,8 @@ public class TxtInput extends Input {
                 readLines.add(sepLine);
             }
         }catch (FileNotFoundException e) {
-			e.printStackTrace();
 		}
         catch (IOException e) {
-			e.printStackTrace();
 		}
 
         return readLines;
