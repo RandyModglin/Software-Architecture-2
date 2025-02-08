@@ -14,21 +14,28 @@ public class CSVInput extends Input {
 
     @Override
     public ArrayList<String[]> readInput(){
-        ArrayList<String[]> readLines = new ArrayList<String[]>();
+        ArrayList<String[]> readLines = new ArrayList<>();
         
         try (BufferedReader br = new BufferedReader(new FileReader(currFile))){
             String line;
+            StringBuilder fullText = new StringBuilder();
 
-            while ((line = br.readLine()) != null){
-                String[] sepLine = line.split("\\.");
+            while ((line = br.readLine()) != null) {
+                fullText.append(line).append(" ");
+            }
 
-                readLines.add(sepLine);
+            String[] sentences = fullText.toString().trim().split("\\.");
+
+            for (String sentence : sentences) {
+                sentence = sentence.trim();
+                if (!sentence.isEmpty()) {
+                    String[] words = sentence.split("\\s+");
+                    readLines.add(words);
+                }
             }
         }catch (FileNotFoundException e) {
-			e.printStackTrace();
 		}
         catch (IOException e) {
-			e.printStackTrace();
 		}
 
         return readLines;
