@@ -16,7 +16,7 @@ public class KWICProcessor {
         ArrayList<String[]> storedLines = lineStorage.getLines();
 
         for(String[] line : storedLines){
-            for(String word : line){
+            for(@SuppressWarnings("unused") String word : line){
                 Collections.rotate(Arrays.asList(line), 1);
                 String joinLine = String.join(" ", line);
                 processedLines.put(joinLine, currIndex);

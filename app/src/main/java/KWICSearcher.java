@@ -4,14 +4,14 @@ import IO.LineStorage;
 
 public class KWICSearcher {
     public ArrayList<String> SearchFile(LineStorage lineStorage, String target) {
-        ArrayList<String> matchingLines = new ArrayList<String>();
+        ArrayList<String> matchingLines = new ArrayList<>();
 
         for(String[] line : lineStorage.getLines()){
             String currLine = null;
             boolean matching = false;
 
             for(String word: line){
-                if(word == target){
+                if(word.equals(target)){
                     currLine += ("[" + word + "] ");
                     matching = true;
                 }

@@ -34,10 +34,6 @@ public abstract class Input {
     protected boolean validateInput(File currFile) {
         String fileName = currFile.getName().toUpperCase();
 
-        if(fileName.endsWith(supportedType)){
-            return true;
-        }
-
-        return false;
+        return fileName.endsWith(supportedType);
     }
 }
