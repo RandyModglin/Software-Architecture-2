@@ -12,7 +12,7 @@ public class Controller {
 	//4th arg for search in the keyword
 	public static void main(String[] args) {
 	
-		if(args.length < 4 || args.length > 5){
+		if(args.length < 4){
 			System.out.println("Incorrect Number of Arguments");
 			return;
 		}
@@ -54,6 +54,13 @@ public class Controller {
 					outputObj.PrintProcess(sortedProcess);
 					break;
 				case "keyword-search":
+					if(args.length == 5){
+						KWICSearcher searcher= (KWICSearcher) OptionReader.getObjectFromStr("KWICSearcher");
+						ArrayList<String> searchedLines = searcher.SearchFile(lineStorage, args[4]);
+						outputObj.PrintSearch(searchedLines, args[4]);
+					}else{
+						System.out.println("Incorrect Number of Arguments for Search Function");
+					}
 					break;
 				case "index-generation":
 					KWICIndexer indexer = (KWICIndexer) OptionReader.getObjectFromStr("KWICIndexer");

@@ -9,9 +9,7 @@ import java.util.TreeMap;
 
 public class TxtOutput implements Output{
 
-     @Override
-    public void PrintProcess(TreeMap<String, Integer> sortedProcess) {
-
+    private void setOut(){
         PrintStream out;
         try {
             out = new PrintStream(new FileOutputStream("output.txt"));
@@ -19,7 +17,12 @@ public class TxtOutput implements Output{
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
 
+     @Override
+    public void PrintProcess(TreeMap<String, Integer> sortedProcess) {
+        setOut();
+        
         System.out.print("Index ");
         System.out.print(" Circular Shifted Line "); 
         System.out.println(" Original Line Index");
@@ -39,13 +42,7 @@ public class TxtOutput implements Output{
 
     @Override
     public void PrintIndex(TreeMap<String, ArrayList<Integer>> sortedIndex) {
-        PrintStream out;
-        try {
-            out = new PrintStream(new FileOutputStream("output.txt"));
-            System.setOut(out);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        setOut();
 
         for(Entry<String, ArrayList<Integer>> entry : sortedIndex.entrySet()) {
             String key = entry.getKey();
@@ -57,6 +54,22 @@ public class TxtOutput implements Output{
             }
 
             System.out.println();
+        }
+    }
+
+    @Override
+    public void PrintSearch(ArrayList<String> searchedLines, String target) {
+        setOut();
+
+        if(searchedLines.size() <= 0){
+            System.out.println(target + " not found");
+            return;
+        }
+
+        System.out.println(searchedLines.size() + " sentence is found: ");
+
+        for(String line: searchedLines){
+            System.out.println(line);
         }
     }
     

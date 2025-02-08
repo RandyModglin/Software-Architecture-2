@@ -34,7 +34,7 @@ public class Sorter {
     }
 
     public static TreeMap<String, ArrayList<Integer>> sortIndex(HashMap<String, ArrayList<Integer>> keyWordMap) {
-        TreeMap<String, ArrayList<Integer>> sortedMap = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        TreeMap<String, ArrayList<Integer>> sortedMap = new TreeMap<>(sortingMethod);
 
         if(isFiltering == true){
             for(Entry<String, ArrayList<Integer>> entry : keyWordMap.entrySet()) {
