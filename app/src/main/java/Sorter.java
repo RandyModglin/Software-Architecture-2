@@ -8,11 +8,11 @@ import java.util.TreeMap;
 
 public class Sorter {
 
-    public static Comparator<String> sortingMethod;
-    public static Boolean isFiltering;
-    public static List<String> filteredWords;
+    private static Comparator<String> sortingMethod;
+    private static Boolean isFiltering;
+    private static List<String> filteredWords;
 
-    public static void Configure(){        
+    public static void configure(){        
         if(OptionReader.getString("Order").equals("Ascending")){
             sortingMethod = String.CASE_INSENSITIVE_ORDER;
         }

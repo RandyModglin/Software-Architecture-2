@@ -25,7 +25,7 @@ public class Controller {
 		Input inputObj = (Input) OptionReader.getObjectFromKey(inputObjStr);
 
 		//Create Sorter
-		Sorter.Configure();
+		Sorter.configure();
 
 		//Get output object
 		String outputObjStr = OptionReader.getString("Output"); 		

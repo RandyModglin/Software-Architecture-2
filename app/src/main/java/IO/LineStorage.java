@@ -7,7 +7,7 @@ public class LineStorage {
     private ArrayList<String[]> storedLines;
 
     public LineStorage(){
-        storedLines = new ArrayList<String[]>();
+        storedLines = new ArrayList<>();
     }
 
     public void storeLines(Input inputObj) {
