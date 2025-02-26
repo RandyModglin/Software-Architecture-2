@@ -1,3 +1,6 @@
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
@@ -7,7 +10,8 @@ import IO.LineStorage;
 import IO.Output;
 
 public class Controller {	
-	
+	private static final int PORT = 1234;
+
 	//3rd Arg is the function
 	//4th arg for search in the keyword
 	public static void main(String[] args) {
@@ -31,7 +35,7 @@ public class Controller {
 		String outputObjStr = OptionReader.getString("Output"); 		
 		Output outputObj = (Output) OptionReader.getObjectFromKey(outputObjStr);
 
-		
+		KWICLogger requestLogger = new KWICLogger();
 
 		//Get input file
 		String inputFileStr = OptionReader.getString("InputFileName");
@@ -47,26 +51,31 @@ public class Controller {
 
 			switch (processName) {
 				case "kwic-processing" -> {
-                                    KWICProcessor processor = (KWICProcessor) OptionReader.getObjectFromStr("KWICProcessor");
-                                    HashMap<String, Integer> processedLines = processor.ProcessFile(lineStorage);
-                                    TreeMap<String, Integer> sortedProcess = Sorter.sortProcess(processedLines);
-                                    outputObj.PrintProcess(sortedProcess);
-                        }
+                    KWICProcessor processor = (KWICProcessor) OptionReader.getObjectFromStr("KWICProcessor");
+                    HashMap<String, Integer> processedLines = processor.ProcessFile(lineStorage);
+                    TreeMap<String, Integer> sortedProcess = Sorter.sortProcess(processedLines);
+                    outputObj.PrintProcess(sortedProcess);
+                }
 				case "keyword-search" -> {
-                                    if(args.length == 3){
-                                        KWICSearcher searcher= (KWICSearcher) OptionReader.getObjectFromStr("KWICSearcher");
-                                        ArrayList<String> searchedLines = searcher.SearchFile(lineStorage, args[1]);
-                                        outputObj.PrintSearch(searchedLines, args[1]);
-                                    }else{
-                                        System.out.println("Incorrect Number of Arguments for Search Function");
-                                    }
-                        }
+					try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+            			
+						System.out.println("Server started on port " + PORT);
+            			
+						while (true) {
+                			Socket clientSocket = serverSocket.accept();
+                			new ClientHandler(clientSocket, lineStorage, requestLogger).searchLines();
+            			}
+					}
+
+					catch (IOException e) {
+        			}
+				}
 				case "index-generation" -> {
-                                    KWICIndexer indexer = (KWICIndexer) OptionReader.getObjectFromStr("KWICIndexer");
-                                    HashMap<String, ArrayList<Integer>> indexedLines = indexer.IndexFile(lineStorage);
-                                    TreeMap<String, ArrayList<Integer>> sortedIndexes = Sorter.sortIndex(indexedLines);
-                                    outputObj.PrintIndex(sortedIndexes);
-                        }
+                    KWICIndexer indexer = (KWICIndexer) OptionReader.getObjectFromStr("KWICIndexer");
+                    HashMap<String, ArrayList<Integer>> indexedLines = indexer.IndexFile(lineStorage);
+                    TreeMap<String, ArrayList<Integer>> sortedIndexes = Sorter.sortIndex(indexedLines);
+                    outputObj.PrintIndex(sortedIndexes);
+                }
 				default -> System.out.println("Unsupported Process");
 			}
 		}
