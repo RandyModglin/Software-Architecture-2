@@ -21,9 +21,6 @@ public class KWICLogger {
         } catch (FileNotFoundException e) {
         }
 
-        System.out.println("Total requests: " + total);
-        System.out.println("Successful requests: " + successful);
-
         synchronized (this) {
             System.out.println("Total requests: " + total);
             System.out.println("Successful requests: " + successful);
