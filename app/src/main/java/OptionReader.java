@@ -4,7 +4,7 @@ import java.util.ResourceBundle;
 
 public class OptionReader {
 	private static HashMap<String, String> userOptions = null;
-	private static KWICObjectLoader kwicObjLoader = new KWICObjectLoader();
+	private static final KWICObjectLoader kwicObjLoader = new KWICObjectLoader();
 	
 	private OptionReader() {
 	}
@@ -12,7 +12,7 @@ public class OptionReader {
 	public static void readOptions() {
 		ResourceBundle rb = ResourceBundle.getBundle("config");
 		Enumeration<String> keys = rb.getKeys();
-		userOptions = new HashMap<String, String>();
+		userOptions = new HashMap<>();
 		while (keys.hasMoreElements()) {
 			String key = keys.nextElement();
 			String value = rb.getString(key);

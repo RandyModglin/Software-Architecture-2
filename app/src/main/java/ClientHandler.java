@@ -30,7 +30,7 @@ public class ClientHandler{
             String targetWord = in.readLine();
             
             if (targetWord == null){
-                out.print(" ");
+                out.print("");
                 requestLogger.logRequest(false); 
                 return;
             } 
@@ -38,13 +38,16 @@ public class ClientHandler{
             ArrayList<String> searchedLines = searcher.SearchFile(lineStorage, targetWord);
 
             if(searchedLines.size() <= 0){
-                out.print(" ");
+                out.print("");
                 requestLogger.logRequest(false);
                 return;
             }
 
             requestLogger.logRequest(true);
-            out.print(searchedLines);
+
+            for(String line : searchedLines){
+                out.print(line);
+            }
             
         } catch (IOException e) {
         } finally {

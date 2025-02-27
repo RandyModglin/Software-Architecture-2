@@ -4,7 +4,9 @@ import java.io.PrintStream;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class KWICLogger {
+    @SuppressWarnings("FieldMayBeFinal")
     private AtomicInteger totalRequests = new AtomicInteger(0);
+    @SuppressWarnings("FieldMayBeFinal")
     private AtomicInteger successfulRequests = new AtomicInteger(0);
     private final String logFile = "log.txt";
 

@@ -20,12 +20,7 @@ public class KWICObjectLoader extends ClassLoader {
             //return the instance
             return obj;
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (NoSuchMethodException | SecurityException e) {
-			e.printStackTrace();
+				| InvocationTargetException | ClassNotFoundException | NoSuchMethodException | SecurityException e) {
 		}
 		return null;
 	}

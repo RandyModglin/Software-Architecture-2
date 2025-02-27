@@ -1,4 +1,4 @@
-Total requests: 1
-Successful requests: 1
-Total requests: 1
-Successful requests: 1
+Total requests: 3
+Successful requests: 2
+Total requests: 3
+Successful requests: 2
